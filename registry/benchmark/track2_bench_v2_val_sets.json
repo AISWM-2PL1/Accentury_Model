@@ -1,0 +1,33 @@
+{
+  "생성": "2026-09-03",
+  "벤치마크": "track2_bench_v2_val",
+  "용도": "체크포인트(epoch) 선택 전용 — 이 세트로 성능을 보고하지 않는다",
+  "세트": {
+    "v2val_gyeongsang_10to40s": {
+      "발화": 1003
+    },
+    "v2val_gyeongsang_50s": {
+      "발화": 854
+    },
+    "v2val_gyeongsang_60s": {
+      "발화": 696
+    },
+    "v2val_gyeongsang_70s": {
+      "발화": 543
+    },
+    "v2val_gyeongsang_80s_plus": {
+      "발화": 679
+    },
+    "v2val_seoul_10to40s": {
+      "발화": 907
+    },
+    "v2val_seoul_50s": {
+      "발화": 649
+    },
+    "v2val_seoul_60s_plus": {
+      "발화": 567
+    }
+  },
+  "공유본": "채점기가 대조하는 세트별 발화 수만 발췌",
+  "source_sha256": "705ec13c3b78a22c5f338a99f9e12a8f6713d0421701804e70ce2e599d493213"
+}

@@ -1,0 +1,233 @@
+{
+  "exported": "2026-10-28",
+  "source_repository": "ddang72-c/accentury",
+  "source_commit": "1e17e43878762e407fec3a53420112dbbf65b2a5",
+  "paper_snapshot": "dialect5_a12p8h_extension_2026-10-09/deployment",
+  "gyeongsang_50h_source_status": "89064c2는 학습 시작 직전 Git 후보. 당시 서버 소스와 바이트 동일성 미확인.",
+  "files": [
+    {
+      "path": "src/finetune/train_lora_whisper.py",
+      "sha256": "552dcf4a5a2844605d82645fe1b0d3a0f7066cc3524bb4ab213f85e00c6692c3",
+      "source": "deployment/2026-10-09/src/finetune/train_lora_whisper.py",
+      "source_sha256": "552dcf4a5a2844605d82645fe1b0d3a0f7066cc3524bb4ab213f85e00c6692c3",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/gs_grid.json",
+      "sha256": "a64180cc95d8f1d87a4a696b8b32536e045f82c2249a8342475e2e8411d22c39",
+      "source": "deployment/2026-10-09/src/finetune/gs_grid.json",
+      "source_sha256": "a64180cc95d8f1d87a4a696b8b32536e045f82c2249a8342475e2e8411d22c39",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/run_dialect5_lowres.sh",
+      "sha256": "b1c9efd0b3fcdfc8adcfc0bdbc4de3cfdf562481dd16e9061f4b484ada9ca433",
+      "source": "deployment/2026-10-09/src/finetune/run_dialect5_lowres.sh",
+      "source_sha256": "b1c9efd0b3fcdfc8adcfc0bdbc4de3cfdf562481dd16e9061f4b484ada9ca433",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/run_dialect5_smoke.sh",
+      "sha256": "28db62796161bec6d6a1a6747dfa05d263aa28332e1f81a5b74611fe914e2f0b",
+      "source": "deployment/2026-10-09/src/finetune/run_dialect5_smoke.sh",
+      "source_sha256": "28db62796161bec6d6a1a6747dfa05d263aa28332e1f81a5b74611fe914e2f0b",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/run_dialect5_score.sh",
+      "sha256": "7988021259d7d396e6fb17d599e6ba249fac418a6df582f9fab98692cac9fc3b",
+      "source": "deployment/2026-10-09/src/finetune/run_dialect5_score.sh",
+      "source_sha256": "7988021259d7d396e6fb17d599e6ba249fac418a6df582f9fab98692cac9fc3b",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/score_dialect5_val.py",
+      "sha256": "431ef8bed1181a26d90fad0c15ae47173550cd7bf7cd025f41a9137bdc445d2e",
+      "source": "deployment/2026-10-09/src/finetune/score_dialect5_val.py",
+      "source_sha256": "431ef8bed1181a26d90fad0c15ae47173550cd7bf7cd025f41a9137bdc445d2e",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/run_lora_train.sh",
+      "sha256": "bc47dfa9327733f393ad95ed892e5c271a4844226543b9f29ed09471c990b0cc",
+      "source": "deployment/2026-10-09/src/finetune/run_lora_train.sh",
+      "source_sha256": "bc47dfa9327733f393ad95ed892e5c271a4844226543b9f29ed09471c990b0cc",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/run_scorer.sh",
+      "sha256": "2e48ebe0d3cb5348dba081774e4924535ec2234f8fa2379506cbc57e7f58891e",
+      "source": "deployment/2026-10-09/src/finetune/run_scorer.sh",
+      "source_sha256": "2e48ebe0d3cb5348dba081774e4924535ec2234f8fa2379506cbc57e7f58891e",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/val_hook.py",
+      "sha256": "a948656365f69093e8a8b28073d450cdb9e85aef5675f0f441764f7d2d69b118",
+      "source": "deployment/2026-10-09/src/finetune/val_hook.py",
+      "source_sha256": "a948656365f69093e8a8b28073d450cdb9e85aef5675f0f441764f7d2d69b118",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/aggregate_dialect5_lowres.py",
+      "sha256": "245eb2f3785181134e37f31a67240e753e3ae0120faa65d701be1182b75664ab",
+      "source": "deployment/2026-10-09/src/finetune/aggregate_dialect5_lowres.py",
+      "source_sha256": "245eb2f3785181134e37f31a67240e753e3ae0120faa65d701be1182b75664ab",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/aggregate_dialect5_wer.py",
+      "sha256": "d6d7d8da468eeff276edf43a3a9a3afb246d9d51949c56e63fc0acf590da767c",
+      "source": "deployment/2026-10-09/src/finetune/aggregate_dialect5_wer.py",
+      "source_sha256": "d6d7d8da468eeff276edf43a3a9a3afb246d9d51949c56e63fc0acf590da767c",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/finetune/dialect5_exclusions.py",
+      "sha256": "80c744d1bbe8a8c3bc3786b615ec760c6c80cb3c297162ae8e24370a3896e99f",
+      "source": "deployment/2026-10-09/src/finetune/dialect5_exclusions.py",
+      "source_sha256": "80c744d1bbe8a8c3bc3786b615ec760c6c80cb3c297162ae8e24370a3896e99f",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/asr_metrics.py",
+      "sha256": "e9a45c1ed754fac05f4461b6d12dc3e39335c88bfe01c0427c3c39e2e7db919f",
+      "source": "deployment/2026-10-09/src/stt/asr_metrics.py",
+      "source_sha256": "e9a45c1ed754fac05f4461b6d12dc3e39335c88bfe01c0427c3c39e2e7db919f",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/track2_asr.py",
+      "sha256": "4074722dec0b25875c14140e81887a363e7db50f94dfb167b8c25216b999bea2",
+      "source": "deployment/2026-10-09/src/stt/track2_asr.py",
+      "source_sha256": "4074722dec0b25875c14140e81887a363e7db50f94dfb167b8c25216b999bea2",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/run_track2_stt.py",
+      "sha256": "8f8fc38d15cfbbdcfa62af3471c34c2b1016aa5ebb295dd716a3f8fa3e5b95b3",
+      "source": "deployment/2026-10-09/src/stt/run_track2_stt.py",
+      "source_sha256": "8f8fc38d15cfbbdcfa62af3471c34c2b1016aa5ebb295dd716a3f8fa3e5b95b3",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/track2_data.py",
+      "sha256": "697378b6c57fcd71a63c17768cfcccd3e26d07ebaf6dbe7de7bf15e1ae3ef7c1",
+      "source": "deployment/2026-10-09/src/stt/track2_data.py",
+      "source_sha256": "697378b6c57fcd71a63c17768cfcccd3e26d07ebaf6dbe7de7bf15e1ae3ef7c1",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/score_val_track2.py",
+      "sha256": "3628d82eb6511546557051ecac5b428f6336baf161955fc841b64c16cc920cde",
+      "source": "deployment/2026-10-09/src/stt/score_val_track2.py",
+      "source_sha256": "3628d82eb6511546557051ecac5b428f6336baf161955fc841b64c16cc920cde",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/score_track2.py",
+      "sha256": "d33371e5c4a20f51c60557e528bd8d25022f3776d63a40a1dfe8b7e789dcacf3",
+      "source": "deployment/2026-10-09/src/stt/score_track2.py",
+      "source_sha256": "d33371e5c4a20f51c60557e528bd8d25022f3776d63a40a1dfe8b7e789dcacf3",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/paired_delta_track2.py",
+      "sha256": "95c9a82b91192acf6d2629faa93a4b772492d8a15dc4a8bd768d4c075f2989ae",
+      "source": "deployment/2026-10-09/src/stt/paired_delta_track2.py",
+      "source_sha256": "95c9a82b91192acf6d2629faa93a4b772492d8a15dc4a8bd768d4c075f2989ae",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/bootstrap_ci.py",
+      "sha256": "5a836d2696bdeaf7cea0d1bd0b02c8a2babcd2f0849147b5c9c0a643cb261e30",
+      "source": "deployment/2026-10-09/src/stt/bootstrap_ci.py",
+      "source_sha256": "5a836d2696bdeaf7cea0d1bd0b02c8a2babcd2f0849147b5c9c0a643cb261e30",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/dialect_pos_val_track2.py",
+      "sha256": "73f0b06bd50df042747b48dda77ba4f2f5a69eb3e47bd9116e83ed1d419cc198",
+      "source": "deployment/2026-10-09/src/stt/dialect_pos_val_track2.py",
+      "source_sha256": "73f0b06bd50df042747b48dda77ba4f2f5a69eb3e47bd9116e83ed1d419cc198",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/dialect_pos_track2.py",
+      "sha256": "a67b7f6f731f807323acbe6c354511fa5dcb11b0edbd22050d5fe4f6b07d6850",
+      "source": "deployment/2026-10-09/src/stt/dialect_pos_track2.py",
+      "source_sha256": "a67b7f6f731f807323acbe6c354511fa5dcb11b0edbd22050d5fe4f6b07d6850",
+      "kind": "unchanged"
+    },
+    {
+      "path": "src/stt/score_bench_v2.py",
+      "sha256": "c9598af28c0bbbaa9b26cb55d24a37b227684e98fb23089e01e521c5a4c0858f",
+      "source": "deployment/2026-10-09/src/stt/score_bench_v2.py",
+      "source_sha256": "c9598af28c0bbbaa9b26cb55d24a37b227684e98fb23089e01e521c5a4c0858f",
+      "kind": "unchanged"
+    },
+    {
+      "path": "registry/finetune/dialect5_low_resource_runs_2026-10-04.json",
+      "sha256": "4dcc748b74b18a5a7b20eb9083f3fd7acffa365c105997ddc11f86e5e6658636",
+      "source": "https://github.com/ddang72-c/accentury/blob/1e17e43878762e407fec3a53420112dbbf65b2a5/registry/finetune/dialect5_low_resource_runs_2026-10-04.json",
+      "source_sha256": "4dcc748b74b18a5a7b20eb9083f3fd7acffa365c105997ddc11f86e5e6658636",
+      "kind": "unchanged"
+    },
+    {
+      "path": "registry/finetune/dialect5_low_resource_runs_2026-10-09.json",
+      "sha256": "157c056bf4b4be8d6c7958013a2d399145a168af4e8f695322be966a8f8c0677",
+      "source": "deployment/2026-10-09/registry/finetune/dialect5_low_resource_runs_2026-10-09.json",
+      "source_sha256": "157c056bf4b4be8d6c7958013a2d399145a168af4e8f695322be966a8f8c0677",
+      "kind": "unchanged"
+    },
+    {
+      "path": "historical/gyeongsang_50h_candidate_89064c2/src/finetune/train_lora_whisper.py",
+      "sha256": "4ad5dffca90b50c26d239ece58f72b9679940f0ee01f8276757970d15049738d",
+      "source": "https://github.com/ddang72-c/accentury/blob/89064c228be08e76a3b862abe60555dddc268b39/src/finetune/train_lora_whisper.py",
+      "source_sha256": "4ad5dffca90b50c26d239ece58f72b9679940f0ee01f8276757970d15049738d",
+      "kind": "historical_candidate_not_deployment_verified"
+    },
+    {
+      "path": "historical/gyeongsang_50h_candidate_89064c2/src/stt/asr_metrics.py",
+      "sha256": "e9a45c1ed754fac05f4461b6d12dc3e39335c88bfe01c0427c3c39e2e7db919f",
+      "source": "https://github.com/ddang72-c/accentury/blob/89064c228be08e76a3b862abe60555dddc268b39/src/stt/asr_metrics.py",
+      "source_sha256": "e9a45c1ed754fac05f4461b6d12dc3e39335c88bfe01c0427c3c39e2e7db919f",
+      "kind": "historical_candidate_not_deployment_verified"
+    },
+    {
+      "path": "registry/finetune/gyeongsang_50h_final_settings.json",
+      "sha256": "45d7351d77ba9184a6973c2952f94c95e76bd432a05004200292cb00023884fa",
+      "source": "s3://accentury-track2-325771561913/results_lora_main/r2_lr5e-5/report/lora_main_r2_lr5e-5.json",
+      "source_sha256": "f44cc266561771af4d714d6afd41c50f8f80c3eecfe272b47382f01b5c90f4b9",
+      "kind": "selected_fields"
+    },
+    {
+      "path": "registry/finetune/pooled_GS-09_full_settings.json",
+      "sha256": "a5b5aa7d6276cc0e5122a95dd38993937488142e65d9164d8d6d304dbe6fb348",
+      "source": "s3://accentury-track2-325771561913/results_dialect5/pooled/pooled_GS-09/report/lora_pooled_GS-09_full.json",
+      "source_sha256": "4a1257ff7671c438d2fa0d2e915d7d7c458e38ce25a715f276e676bdd453064f",
+      "kind": "selected_fields"
+    },
+    {
+      "path": "registry/finetune/pooled_GS-09_smoke_settings.json",
+      "sha256": "3ca75493f1e992723cfa265d4745c0deb3eba10bd489ad0a5ae1e1a182139f85",
+      "source": "s3://accentury-track2-325771561913/results_dialect5/pooled/pooled_GS-09/report/lora_pooled_GS-09_smoke.json",
+      "source_sha256": "da1f374aece971648bc6705be518b87ec808c19b68fbeac35e9b4ce368c5c699",
+      "kind": "selected_fields"
+    },
+    {
+      "path": "registry/benchmark/track2_bench_v2_val_sets.json",
+      "sha256": "a8cda8c1ea3aefc4a4c35430000cdc4f1aff110a0b6684e44eb83cbfd66b3da3",
+      "source": "https://github.com/ddang72-c/accentury/blob/1e17e43878762e407fec3a53420112dbbf65b2a5/registry/benchmark/track2_bench_v2_val_sets.json",
+      "source_sha256": "705ec13c3b78a22c5f338a99f9e12a8f6713d0421701804e70ce2e599d493213",
+      "kind": "selected_fields"
+    },
+    {
+      "path": "registry/benchmark/track2_bench_v2_val_select__r2_lr5e-5.json",
+      "sha256": "7381e27e4baa80beb0ed707f98def192d4cbd3fbb70de6686d2e4b867315fb38",
+      "source": "https://github.com/ddang72-c/accentury/blob/1e17e43878762e407fec3a53420112dbbf65b2a5/registry/benchmark/track2_bench_v2_val_select__r2_lr5e-5.json",
+      "source_sha256": "7381e27e4baa80beb0ed707f98def192d4cbd3fbb70de6686d2e4b867315fb38",
+      "kind": "unchanged"
+    }
+  ]
+}

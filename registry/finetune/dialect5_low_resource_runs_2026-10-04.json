@@ -1,0 +1,1073 @@
+{
+ "생성": "2026-10-04T16:14:31+09:00",
+ "스크립트": "src/finetune/make_dialect5_lowres_runs.py",
+ "정본_문서": "docs/DIALECT5_LOW_RESOURCE_PARALLEL_TRAIN_PLAN_2026-10-04.md",
+ "입력": {
+  "계획": "registry/finetune/dialect5_low_resource_train_plan_2026-10-04.json",
+  "B_묶음": "registry/benchmark/dialect5_low_resource_b_train_2026-10-04.json",
+  "중첩_묶음": "registry/benchmark/dialect5_nested_train_2026-10-04.json",
+  "시간_추정_근거": "registry/finetune/dialect5_zero_target_train_design_2026-10-04.json time_comparison",
+  "그리드": "src/finetune/gs_grid.json"
+ },
+ "common": {
+  "combo": "GS-09",
+  "phase": "direct (저장된 상태가 있으면 full 로 재개)",
+  "patience": 5,
+  "min_stop_steps": 500,
+  "eval_every_frac": 0.2,
+  "trainer_extra_args": [
+   "--val-loss-min-steps",
+   "500"
+  ],
+  "trainer_argv_from_runner": [
+   "--epochs",
+   "15",
+   "--lr-schedule",
+   "linear",
+   "--warmup-ratio",
+   "0.0833",
+   "--beta1",
+   "0.9",
+   "--beta2",
+   "0.99",
+   "--r",
+   "32",
+   "--alpha",
+   "8",
+   "--weight-decay",
+   "0.03",
+   "--label-smoothing",
+   "0.1",
+   "--batch",
+   "8",
+   "--eval-every-frac",
+   "0.2",
+   "--keep-last",
+   "3",
+   "--lr",
+   "1e-4",
+   "--grad-accum",
+   "1",
+   "--dropout",
+   "0.05",
+   "--run-kind",
+   "main",
+   "--val-loss-patience",
+   "5",
+   "--val-loss-min-steps",
+   "500"
+  ],
+  "training_settings": {
+   "repo": "openai/whisper-large-v3",
+   "seed": 20260903,
+   "epochs": 15,
+   "batch": 8,
+   "grad_accum": 1,
+   "lr": 0.0001,
+   "r": 32,
+   "alpha": 8,
+   "dropout": 0.05,
+   "weight_decay": 0.03,
+   "label_smoothing": 0.1,
+   "beta1": 0.9,
+   "beta2": 0.99,
+   "eps": 1e-08,
+   "grad_ckpt": false,
+   "max_grad_norm": 1,
+   "spec_augment": true,
+   "mask_time_prob": 0.05,
+   "mask_time_length": 10,
+   "mask_feature_prob": 0,
+   "mask_feature_length": 10,
+   "lr_schedule": "linear",
+   "warmup_ratio": 0.0833,
+   "warmup_steps": -1,
+   "eval_every_frac": 0.2,
+   "eval_every_steps": -1,
+   "val_loss_patience": 5,
+   "val_loss_min_delta": 0,
+   "keep_last": 3,
+   "max_sec": 30
+  },
+  "settings_check": {
+   "method": "러너가 넘길 인자를 train_lora_whisper.build_args 로 풀어 계획의 training_settings·early_stopping 과 비교",
+   "equal": true,
+   "compared_keys": [
+    "alpha",
+    "batch",
+    "beta1",
+    "beta2",
+    "dropout",
+    "epochs",
+    "eps",
+    "eval_every_frac",
+    "eval_every_steps",
+    "grad_accum",
+    "grad_ckpt",
+    "keep_last",
+    "label_smoothing",
+    "lr",
+    "lr_schedule",
+    "mask_feature_length",
+    "mask_feature_prob",
+    "mask_time_length",
+    "mask_time_prob",
+    "max_grad_norm",
+    "max_sec",
+    "r",
+    "repo",
+    "run_kind",
+    "seed",
+    "spec_augment",
+    "val_loss_min_delta",
+    "val_loss_min_steps",
+    "val_loss_patience",
+    "warmup_ratio",
+    "warmup_steps",
+    "weight_decay"
+   ]
+  },
+  "local": {
+   "adapter": "$ACCENTURY_DATA/work/finetune/dialect5_lora/<run_id>",
+   "tensorboard": "$ACCENTURY_DATA/work/finetune/dialect5_tb/<run_id>",
+   "report": "registry/finetune/dialect5_lora/<run_id>"
+  },
+  "s3": "results_dialect5/<region>/<run_id>/{adapters,tb,report}/ — report/JOB_DONE.json 이 마지막",
+  "claims_s3": "s3://accentury-track2-325771561913/results_dialect5/_lowres_queue/claims/<run_id>.json"
+ },
+ "queue": {
+  "initial": [
+   "gyeongsang_B6p4h_GS-09",
+   "chungcheong_B6p4h_GS-09",
+   "jeolla_B6p4h_GS-09",
+   "gangwon_B6p4h_GS-09",
+   "jeju_B6p4h_GS-09",
+   "gyeongsang_B3p2h_GS-09",
+   "chungcheong_B3p2h_GS-09",
+   "jeolla_B3p2h_GS-09",
+   "gangwon_B3p2h_GS-09",
+   "jeju_B3p2h_GS-09",
+   "jeolla_B1p6h_GS-09",
+   "chungcheong_B1p6h_GS-09"
+  ],
+  "pending": [
+   "gyeongsang_B1p6h_GS-09",
+   "gangwon_B1p6h_GS-09",
+   "chungcheong_B0h_GS-09",
+   "jeolla_B0h_GS-09",
+   "gyeongsang_B0h_GS-09",
+   "gangwon_B0h_GS-09",
+   "jeju_B1p6h_GS-09",
+   "jeju_B0h_GS-09",
+   "jeju_A12p8h_GS-09",
+   "gyeongsang_A12p8h_GS-09",
+   "jeju_A3p2h_GS-09",
+   "gyeongsang_A3p2h_GS-09"
+  ],
+  "pending_basis": "남은 B 를 est_epoch_h 가 큰 순서로, 그 뒤 A 를 같은 기준으로. est_epoch_h = (steps_per_epoch × 통합 GS-09 의 검증 제외 초/step + 완전한 epoch 의 검증 횟수 × 목표 지역 val 1회 실측 중앙값) / 3600 — 1 epoch 추정이며 전체 학습 시간이 아니다 (조기 종료 시점 미반영)",
+  "sec_per_step": 1.1072389871661463,
+  "val_sec": {
+   "gyeongsang": 140.55,
+   "chungcheong": 135.2,
+   "jeolla": 155.25,
+   "gangwon": 193.55,
+   "jeju": 234
+  }
+ },
+ "runs": [
+  {
+   "run_id": "gyeongsang_A3p2h_GS-09",
+   "mode": "A",
+   "region": "gyeongsang",
+   "region_ko": "경상",
+   "target_train_hours": 3.2,
+   "total_train_hours_nominal": 3.2,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_nested_train_v1/gyeongsang/2e830ef855632b5de5b48abde6d2c8cb30ae168e46d20f7f123bd439f1d02523",
+    "dataset_root": "work/finetune/dialect5_nested_train/gyeongsang",
+    "train_set": "gyeongsang_train_3p2h",
+    "manifest_sha256": "cae4f1b5263ff7fa716665523ba48cd4225601bb87fea708ed1bf6802ec38489",
+    "rows": 2647,
+    "trainer_rows": 2647,
+    "steps_per_epoch": 330,
+    "eval_interval_steps": 66,
+    "target_rows": 2647
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_val/manifest.csv",
+    "manifest_sha256": "72bc9d4fa8d0ecca1322bd718d8ada0d498861b9fe725516b5006b70577b3142",
+    "rows": 2524,
+    "trainer_rows": 2524
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_test/manifest.csv",
+    "manifest_sha256": "daa9b6bcff1e4952f0b8400aeea5568a6b6ccfd8138687688a6dccf4221977d6",
+    "rows": 3243
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gyeongsang/gyeongsang_A3p2h_GS-09",
+   "est_epoch_h": 0.297
+  },
+  {
+   "run_id": "gyeongsang_A12p8h_GS-09",
+   "mode": "A",
+   "region": "gyeongsang",
+   "region_ko": "경상",
+   "target_train_hours": 12.8,
+   "total_train_hours_nominal": 12.8,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "train_set": "gyeongsang_train",
+    "manifest_sha256": "d71fca7acaafbf4e84ec461185a224fa3064e9058c5b31dfb45897b04dfe64ff",
+    "rows": 10409,
+    "trainer_rows": 10409,
+    "steps_per_epoch": 1301,
+    "eval_interval_steps": 261,
+    "target_rows": 10409
+   },
+   "val": {
+    "dataset_s3": "",
+    "dataset_root": "",
+    "manifest": "sets/gyeongsang_val/manifest.csv",
+    "manifest_sha256": "72bc9d4fa8d0ecca1322bd718d8ada0d498861b9fe725516b5006b70577b3142",
+    "rows": 2524,
+    "trainer_rows": 2524
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_test/manifest.csv",
+    "manifest_sha256": "daa9b6bcff1e4952f0b8400aeea5568a6b6ccfd8138687688a6dccf4221977d6",
+    "rows": 3243
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gyeongsang/gyeongsang_A12p8h_GS-09",
+   "est_epoch_h": 0.595
+  },
+  {
+   "run_id": "gyeongsang_B0h_GS-09",
+   "mode": "B",
+   "region": "gyeongsang",
+   "region_ko": "경상",
+   "target_train_hours": 0,
+   "total_train_hours_nominal": 51.2,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "gyeongsang_trainB_0h",
+    "manifest_sha256": "5b8ca6a5df2eebcd737abeac7be4e4fe6cfb18700909b2dde3475dc86d27da78",
+    "rows": 50285,
+    "trainer_rows": 50285,
+    "steps_per_epoch": 6285,
+    "eval_interval_steps": 1257,
+    "duration_label_h": 51.1974,
+    "target_rows": 0
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_val/manifest.csv",
+    "manifest_sha256": "72bc9d4fa8d0ecca1322bd718d8ada0d498861b9fe725516b5006b70577b3142",
+    "rows": 2524,
+    "trainer_rows": 2524
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_test/manifest.csv",
+    "manifest_sha256": "daa9b6bcff1e4952f0b8400aeea5568a6b6ccfd8138687688a6dccf4221977d6",
+    "rows": 3243
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gyeongsang/gyeongsang_B0h_GS-09",
+   "est_epoch_h": 2.128
+  },
+  {
+   "run_id": "gyeongsang_B1p6h_GS-09",
+   "mode": "B",
+   "region": "gyeongsang",
+   "region_ko": "경상",
+   "target_train_hours": 1.6,
+   "total_train_hours_nominal": 52.8,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "gyeongsang_trainB_1p6h",
+    "manifest_sha256": "35cdc47754af22dfe9d153177277b80a5c9224b09787f2472df279985950c3ed",
+    "rows": 51631,
+    "trainer_rows": 51631,
+    "steps_per_epoch": 6453,
+    "eval_interval_steps": 1291,
+    "duration_label_h": 52.7966,
+    "target_rows": 1346
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_val/manifest.csv",
+    "manifest_sha256": "72bc9d4fa8d0ecca1322bd718d8ada0d498861b9fe725516b5006b70577b3142",
+    "rows": 2524,
+    "trainer_rows": 2524
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_test/manifest.csv",
+    "manifest_sha256": "daa9b6bcff1e4952f0b8400aeea5568a6b6ccfd8138687688a6dccf4221977d6",
+    "rows": 3243
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gyeongsang/gyeongsang_B1p6h_GS-09",
+   "est_epoch_h": 2.18
+  },
+  {
+   "run_id": "gyeongsang_B3p2h_GS-09",
+   "mode": "B",
+   "region": "gyeongsang",
+   "region_ko": "경상",
+   "target_train_hours": 3.2,
+   "total_train_hours_nominal": 54.4,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "gyeongsang_trainB_3p2h",
+    "manifest_sha256": "fa425eeacdebd4f2bd32a82dee1b0452e6bfca4172d18a0a513f3a9d4e54a8f8",
+    "rows": 52932,
+    "trainer_rows": 52932,
+    "steps_per_epoch": 6616,
+    "eval_interval_steps": 1324,
+    "duration_label_h": 54.3966,
+    "target_rows": 2647
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_val/manifest.csv",
+    "manifest_sha256": "72bc9d4fa8d0ecca1322bd718d8ada0d498861b9fe725516b5006b70577b3142",
+    "rows": 2524,
+    "trainer_rows": 2524
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_test/manifest.csv",
+    "manifest_sha256": "daa9b6bcff1e4952f0b8400aeea5568a6b6ccfd8138687688a6dccf4221977d6",
+    "rows": 3243
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gyeongsang/gyeongsang_B3p2h_GS-09",
+   "est_epoch_h": 2.23
+  },
+  {
+   "run_id": "gyeongsang_B6p4h_GS-09",
+   "mode": "B",
+   "region": "gyeongsang",
+   "region_ko": "경상",
+   "target_train_hours": 6.4,
+   "total_train_hours_nominal": 57.6,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "gyeongsang_trainB_6p4h",
+    "manifest_sha256": "ccac1d590f9d43f0ab2ecf4771f9cbeeb0fa4823bfa4ba4742d7c1c9af735601",
+    "rows": 55508,
+    "trainer_rows": 55508,
+    "steps_per_epoch": 6938,
+    "eval_interval_steps": 1388,
+    "duration_label_h": 57.5967,
+    "target_rows": 5223
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_val/manifest.csv",
+    "manifest_sha256": "72bc9d4fa8d0ecca1322bd718d8ada0d498861b9fe725516b5006b70577b3142",
+    "rows": 2524,
+    "trainer_rows": 2524
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gyeongsang/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gyeongsang",
+    "manifest": "sets/gyeongsang_test/manifest.csv",
+    "manifest_sha256": "daa9b6bcff1e4952f0b8400aeea5568a6b6ccfd8138687688a6dccf4221977d6",
+    "rows": 3243
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gyeongsang/gyeongsang_B6p4h_GS-09",
+   "est_epoch_h": 2.329
+  },
+  {
+   "run_id": "chungcheong_B0h_GS-09",
+   "mode": "B",
+   "region": "chungcheong",
+   "region_ko": "충청",
+   "target_train_hours": 0,
+   "total_train_hours_nominal": 51.2,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "chungcheong_trainB_0h",
+    "manifest_sha256": "e075ad657c61a8153811fd552c0b54c04e8346713683fbc26e414ffa5b699832",
+    "rows": 50894,
+    "trainer_rows": 50894,
+    "steps_per_epoch": 6361,
+    "eval_interval_steps": 1273,
+    "duration_label_h": 51.1972,
+    "target_rows": 0
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/chungcheong/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/chungcheong",
+    "manifest": "sets/chungcheong_val/manifest.csv",
+    "manifest_sha256": "b5f9898644c2f6e9a49cebd6c0b492468667f8cf2d669b87921e22843136fe2a",
+    "rows": 2417,
+    "trainer_rows": 2417
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/chungcheong/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/chungcheong",
+    "manifest": "sets/chungcheong_test/manifest.csv",
+    "manifest_sha256": "4729db4a5c560c2bcba366abeb50286b7b364535d62fae35bce9eff957ad06bc",
+    "rows": 3139
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/chungcheong/chungcheong_B0h_GS-09",
+   "est_epoch_h": 2.144
+  },
+  {
+   "run_id": "chungcheong_B1p6h_GS-09",
+   "mode": "B",
+   "region": "chungcheong",
+   "region_ko": "충청",
+   "target_train_hours": 1.6,
+   "total_train_hours_nominal": 52.8,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "chungcheong_trainB_1p6h",
+    "manifest_sha256": "3ad578e9aecba5d08381f7b853549ec22322a7162dd13e22f70884c6382aec48",
+    "rows": 52165,
+    "trainer_rows": 52165,
+    "steps_per_epoch": 6520,
+    "eval_interval_steps": 1304,
+    "duration_label_h": 52.796,
+    "target_rows": 1271
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/chungcheong/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/chungcheong",
+    "manifest": "sets/chungcheong_val/manifest.csv",
+    "manifest_sha256": "b5f9898644c2f6e9a49cebd6c0b492468667f8cf2d669b87921e22843136fe2a",
+    "rows": 2417,
+    "trainer_rows": 2417
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/chungcheong/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/chungcheong",
+    "manifest": "sets/chungcheong_test/manifest.csv",
+    "manifest_sha256": "4729db4a5c560c2bcba366abeb50286b7b364535d62fae35bce9eff957ad06bc",
+    "rows": 3139
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/chungcheong/chungcheong_B1p6h_GS-09",
+   "est_epoch_h": 2.193
+  },
+  {
+   "run_id": "chungcheong_B3p2h_GS-09",
+   "mode": "B",
+   "region": "chungcheong",
+   "region_ko": "충청",
+   "target_train_hours": 3.2,
+   "total_train_hours_nominal": 54.4,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "chungcheong_trainB_3p2h",
+    "manifest_sha256": "de104190fd81f38a791774f611a4f87572f58356e621edac650f7e0e85bcec96",
+    "rows": 53405,
+    "trainer_rows": 53405,
+    "steps_per_epoch": 6675,
+    "eval_interval_steps": 1335,
+    "duration_label_h": 54.396,
+    "target_rows": 2511
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/chungcheong/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/chungcheong",
+    "manifest": "sets/chungcheong_val/manifest.csv",
+    "manifest_sha256": "b5f9898644c2f6e9a49cebd6c0b492468667f8cf2d669b87921e22843136fe2a",
+    "rows": 2417,
+    "trainer_rows": 2417
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/chungcheong/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/chungcheong",
+    "manifest": "sets/chungcheong_test/manifest.csv",
+    "manifest_sha256": "4729db4a5c560c2bcba366abeb50286b7b364535d62fae35bce9eff957ad06bc",
+    "rows": 3139
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/chungcheong/chungcheong_B3p2h_GS-09",
+   "est_epoch_h": 2.241
+  },
+  {
+   "run_id": "chungcheong_B6p4h_GS-09",
+   "mode": "B",
+   "region": "chungcheong",
+   "region_ko": "충청",
+   "target_train_hours": 6.4,
+   "total_train_hours_nominal": 57.6,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "chungcheong_trainB_6p4h",
+    "manifest_sha256": "b7952a5fe82c605d2b1d6119040a5bdfedbc801271e2fc3858cd29c1a5be9b3a",
+    "rows": 55845,
+    "trainer_rows": 55845,
+    "steps_per_epoch": 6980,
+    "eval_interval_steps": 1396,
+    "duration_label_h": 57.5963,
+    "target_rows": 4951
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/chungcheong/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/chungcheong",
+    "manifest": "sets/chungcheong_val/manifest.csv",
+    "manifest_sha256": "b5f9898644c2f6e9a49cebd6c0b492468667f8cf2d669b87921e22843136fe2a",
+    "rows": 2417,
+    "trainer_rows": 2417
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/chungcheong/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/chungcheong",
+    "manifest": "sets/chungcheong_test/manifest.csv",
+    "manifest_sha256": "4729db4a5c560c2bcba366abeb50286b7b364535d62fae35bce9eff957ad06bc",
+    "rows": 3139
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/chungcheong/chungcheong_B6p4h_GS-09",
+   "est_epoch_h": 2.335
+  },
+  {
+   "run_id": "jeolla_B0h_GS-09",
+   "mode": "B",
+   "region": "jeolla",
+   "region_ko": "전라",
+   "target_train_hours": 0,
+   "total_train_hours_nominal": 51.2,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "jeolla_trainB_0h",
+    "manifest_sha256": "c2e6defa8e846b0af99f8b159b55810750867b66e83b1f1cf65ac37b615d7395",
+    "rows": 50115,
+    "trainer_rows": 50115,
+    "steps_per_epoch": 6264,
+    "eval_interval_steps": 1253,
+    "duration_label_h": 51.1971,
+    "target_rows": 0
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeolla/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeolla",
+    "manifest": "sets/jeolla_val/manifest.csv",
+    "manifest_sha256": "c4909535f7aa73ce7a41d5906dd495757e4e16e664fca12786c7f0971f074470",
+    "rows": 2796,
+    "trainer_rows": 2796
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeolla/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeolla",
+    "manifest": "sets/jeolla_test/manifest.csv",
+    "manifest_sha256": "d43cd96d5b28bfe6f438a30970215e36838f04826ffe4763ed1370f7d818de93",
+    "rows": 3544
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeolla/jeolla_B0h_GS-09",
+   "est_epoch_h": 2.142
+  },
+  {
+   "run_id": "jeolla_B1p6h_GS-09",
+   "mode": "B",
+   "region": "jeolla",
+   "region_ko": "전라",
+   "target_train_hours": 1.6,
+   "total_train_hours_nominal": 52.8,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "jeolla_trainB_1p6h",
+    "manifest_sha256": "0796fbc26c7eb7e2ea44bdf02ca218869df8b40299477b3f78f5ba0e054d51a9",
+    "rows": 51510,
+    "trainer_rows": 51510,
+    "steps_per_epoch": 6438,
+    "eval_interval_steps": 1288,
+    "duration_label_h": 52.796,
+    "target_rows": 1395
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeolla/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeolla",
+    "manifest": "sets/jeolla_val/manifest.csv",
+    "manifest_sha256": "c4909535f7aa73ce7a41d5906dd495757e4e16e664fca12786c7f0971f074470",
+    "rows": 2796,
+    "trainer_rows": 2796
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeolla/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeolla",
+    "manifest": "sets/jeolla_test/manifest.csv",
+    "manifest_sha256": "d43cd96d5b28bfe6f438a30970215e36838f04826ffe4763ed1370f7d818de93",
+    "rows": 3544
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeolla/jeolla_B1p6h_GS-09",
+   "est_epoch_h": 2.196
+  },
+  {
+   "run_id": "jeolla_B3p2h_GS-09",
+   "mode": "B",
+   "region": "jeolla",
+   "region_ko": "전라",
+   "target_train_hours": 3.2,
+   "total_train_hours_nominal": 54.4,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "jeolla_trainB_3p2h",
+    "manifest_sha256": "3556e6e50601c4a781c1a998db3eedb8c50f01a8646e13aec9d644cfe2e92278",
+    "rows": 52830,
+    "trainer_rows": 52830,
+    "steps_per_epoch": 6603,
+    "eval_interval_steps": 1321,
+    "duration_label_h": 54.3961,
+    "target_rows": 2715
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeolla/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeolla",
+    "manifest": "sets/jeolla_val/manifest.csv",
+    "manifest_sha256": "c4909535f7aa73ce7a41d5906dd495757e4e16e664fca12786c7f0971f074470",
+    "rows": 2796,
+    "trainer_rows": 2796
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeolla/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeolla",
+    "manifest": "sets/jeolla_test/manifest.csv",
+    "manifest_sha256": "d43cd96d5b28bfe6f438a30970215e36838f04826ffe4763ed1370f7d818de93",
+    "rows": 3544
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeolla/jeolla_B3p2h_GS-09",
+   "est_epoch_h": 2.246
+  },
+  {
+   "run_id": "jeolla_B6p4h_GS-09",
+   "mode": "B",
+   "region": "jeolla",
+   "region_ko": "전라",
+   "target_train_hours": 6.4,
+   "total_train_hours_nominal": 57.6,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "jeolla_trainB_6p4h",
+    "manifest_sha256": "ff88d451a80c15ff484d16330b1c38740119840f4aa5abc091ea296639f17810",
+    "rows": 55455,
+    "trainer_rows": 55455,
+    "steps_per_epoch": 6931,
+    "eval_interval_steps": 1387,
+    "duration_label_h": 57.5964,
+    "target_rows": 5340
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeolla/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeolla",
+    "manifest": "sets/jeolla_val/manifest.csv",
+    "manifest_sha256": "c4909535f7aa73ce7a41d5906dd495757e4e16e664fca12786c7f0971f074470",
+    "rows": 2796,
+    "trainer_rows": 2796
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeolla/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeolla",
+    "manifest": "sets/jeolla_test/manifest.csv",
+    "manifest_sha256": "d43cd96d5b28bfe6f438a30970215e36838f04826ffe4763ed1370f7d818de93",
+    "rows": 3544
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeolla/jeolla_B6p4h_GS-09",
+   "est_epoch_h": 2.347
+  },
+  {
+   "run_id": "gangwon_B0h_GS-09",
+   "mode": "B",
+   "region": "gangwon",
+   "region_ko": "강원",
+   "target_train_hours": 0,
+   "total_train_hours_nominal": 51.2,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "gangwon_trainB_0h",
+    "manifest_sha256": "6df2dab7bea2abe22f4c0609f32e1df8512d08d96e81e8ab8eaba7db03122740",
+    "rows": 47957,
+    "trainer_rows": 47957,
+    "steps_per_epoch": 5994,
+    "eval_interval_steps": 1199,
+    "duration_label_h": 51.1969,
+    "target_rows": 0
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gangwon/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gangwon",
+    "manifest": "sets/gangwon_val/manifest.csv",
+    "manifest_sha256": "94db53fac2fb87ebfbc2f22bd8e390e3903563ed558889d4dd9cc7a9ec0529bd",
+    "rows": 3497,
+    "trainer_rows": 3497
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gangwon/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gangwon",
+    "manifest": "sets/gangwon_test/manifest.csv",
+    "manifest_sha256": "852ea89eeb7d241b70fdee72258a52d56ea13a54323ed0372b927462130755b3",
+    "rows": 4128
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gangwon/gangwon_B0h_GS-09",
+   "est_epoch_h": 2.112
+  },
+  {
+   "run_id": "gangwon_B1p6h_GS-09",
+   "mode": "B",
+   "region": "gangwon",
+   "region_ko": "강원",
+   "target_train_hours": 1.6,
+   "total_train_hours_nominal": 52.8,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "gangwon_trainB_1p6h",
+    "manifest_sha256": "32fc805795e5894b48eaa16f0cfc8b405f50f58c65c19ca30b8631cc8a27cc4f",
+    "rows": 49643,
+    "trainer_rows": 49643,
+    "steps_per_epoch": 6205,
+    "eval_interval_steps": 1241,
+    "duration_label_h": 52.7963,
+    "target_rows": 1686
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gangwon/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gangwon",
+    "manifest": "sets/gangwon_val/manifest.csv",
+    "manifest_sha256": "94db53fac2fb87ebfbc2f22bd8e390e3903563ed558889d4dd9cc7a9ec0529bd",
+    "rows": 3497,
+    "trainer_rows": 3497
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gangwon/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gangwon",
+    "manifest": "sets/gangwon_test/manifest.csv",
+    "manifest_sha256": "852ea89eeb7d241b70fdee72258a52d56ea13a54323ed0372b927462130755b3",
+    "rows": 4128
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gangwon/gangwon_B1p6h_GS-09",
+   "est_epoch_h": 2.177
+  },
+  {
+   "run_id": "gangwon_B3p2h_GS-09",
+   "mode": "B",
+   "region": "gangwon",
+   "region_ko": "강원",
+   "target_train_hours": 3.2,
+   "total_train_hours_nominal": 54.4,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "gangwon_trainB_3p2h",
+    "manifest_sha256": "357698879331c6ac1e16f4b8a5e6c28eff1b31e5bfc53f75cb96c70d890432aa",
+    "rows": 51228,
+    "trainer_rows": 51228,
+    "steps_per_epoch": 6403,
+    "eval_interval_steps": 1281,
+    "duration_label_h": 54.3961,
+    "target_rows": 3271
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gangwon/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gangwon",
+    "manifest": "sets/gangwon_val/manifest.csv",
+    "manifest_sha256": "94db53fac2fb87ebfbc2f22bd8e390e3903563ed558889d4dd9cc7a9ec0529bd",
+    "rows": 3497,
+    "trainer_rows": 3497
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gangwon/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gangwon",
+    "manifest": "sets/gangwon_test/manifest.csv",
+    "manifest_sha256": "852ea89eeb7d241b70fdee72258a52d56ea13a54323ed0372b927462130755b3",
+    "rows": 4128
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gangwon/gangwon_B3p2h_GS-09",
+   "est_epoch_h": 2.238
+  },
+  {
+   "run_id": "gangwon_B6p4h_GS-09",
+   "mode": "B",
+   "region": "gangwon",
+   "region_ko": "강원",
+   "target_train_hours": 6.4,
+   "total_train_hours_nominal": 57.6,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "gangwon_trainB_6p4h",
+    "manifest_sha256": "abe56040028fe964c47581f07b6ee7b4884d5ae974d53fffc4185d73713a438a",
+    "rows": 54382,
+    "trainer_rows": 54382,
+    "steps_per_epoch": 6797,
+    "eval_interval_steps": 1360,
+    "duration_label_h": 57.5964,
+    "target_rows": 6425
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gangwon/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gangwon",
+    "manifest": "sets/gangwon_val/manifest.csv",
+    "manifest_sha256": "94db53fac2fb87ebfbc2f22bd8e390e3903563ed558889d4dd9cc7a9ec0529bd",
+    "rows": 3497,
+    "trainer_rows": 3497
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/gangwon/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/gangwon",
+    "manifest": "sets/gangwon_test/manifest.csv",
+    "manifest_sha256": "852ea89eeb7d241b70fdee72258a52d56ea13a54323ed0372b927462130755b3",
+    "rows": 4128
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/gangwon/gangwon_B6p4h_GS-09",
+   "est_epoch_h": 2.359
+  },
+  {
+   "run_id": "jeju_A3p2h_GS-09",
+   "mode": "A",
+   "region": "jeju",
+   "region_ko": "제주",
+   "target_train_hours": 3.2,
+   "total_train_hours_nominal": 3.2,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_nested_train_v1/jeju/91e2d2d92a13cc56095874cd56c97c3c30677829c7900fd63770d112a9dcfde5",
+    "dataset_root": "work/finetune/dialect5_nested_train/jeju",
+    "train_set": "jeju_train_3p2h",
+    "manifest_sha256": "8a358c15ccddd1c3e519ac731f0dd368555d2e12bedcaf7c939f7c092cc8afd1",
+    "rows": 4426,
+    "trainer_rows": 4426,
+    "steps_per_epoch": 553,
+    "eval_interval_steps": 111,
+    "target_rows": 4426
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_val/manifest.csv",
+    "manifest_sha256": "7bae0fe11883db8a1056d24540c568f712816f539d00d2ba7ed52a66588e6263",
+    "rows": 4209,
+    "trainer_rows": 4209
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_test/manifest.csv",
+    "manifest_sha256": "8050c4ef67a9028c6e62005c2f76288af7c89a6ae725b263396417c1ffe2ebec",
+    "rows": 5117
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeju/jeju_A3p2h_GS-09",
+   "est_epoch_h": 0.495
+  },
+  {
+   "run_id": "jeju_A12p8h_GS-09",
+   "mode": "A",
+   "region": "jeju",
+   "region_ko": "제주",
+   "target_train_hours": 12.8,
+   "total_train_hours_nominal": 12.8,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "train_set": "jeju_train",
+    "manifest_sha256": "87cd982dab59d7028fdeeefd773f99050acb5e2ea6e6d5712ef583a181eb8126",
+    "rows": 17169,
+    "trainer_rows": 17169,
+    "steps_per_epoch": 2146,
+    "eval_interval_steps": 430,
+    "target_rows": 17169
+   },
+   "val": {
+    "dataset_s3": "",
+    "dataset_root": "",
+    "manifest": "sets/jeju_val/manifest.csv",
+    "manifest_sha256": "7bae0fe11883db8a1056d24540c568f712816f539d00d2ba7ed52a66588e6263",
+    "rows": 4209,
+    "trainer_rows": 4209
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_test/manifest.csv",
+    "manifest_sha256": "8050c4ef67a9028c6e62005c2f76288af7c89a6ae725b263396417c1ffe2ebec",
+    "rows": 5117
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeju/jeju_A12p8h_GS-09",
+   "est_epoch_h": 0.985
+  },
+  {
+   "run_id": "jeju_B0h_GS-09",
+   "mode": "B",
+   "region": "jeju",
+   "region_ko": "제주",
+   "target_train_hours": 0,
+   "total_train_hours_nominal": 51.2,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "jeju_trainB_0h",
+    "manifest_sha256": "a8654674726318d21ef8c9e7ee2eceeb27bd95fdffdf8ad9c1be49a0142cee35",
+    "rows": 43525,
+    "trainer_rows": 43525,
+    "steps_per_epoch": 5440,
+    "eval_interval_steps": 1088,
+    "duration_label_h": 51.1974,
+    "target_rows": 0
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_val/manifest.csv",
+    "manifest_sha256": "7bae0fe11883db8a1056d24540c568f712816f539d00d2ba7ed52a66588e6263",
+    "rows": 4209,
+    "trainer_rows": 4209
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_test/manifest.csv",
+    "manifest_sha256": "8050c4ef67a9028c6e62005c2f76288af7c89a6ae725b263396417c1ffe2ebec",
+    "rows": 5117
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeju/jeju_B0h_GS-09",
+   "est_epoch_h": 1.998
+  },
+  {
+   "run_id": "jeju_B1p6h_GS-09",
+   "mode": "B",
+   "region": "jeju",
+   "region_ko": "제주",
+   "target_train_hours": 1.6,
+   "total_train_hours_nominal": 52.8,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "jeju_trainB_1p6h",
+    "manifest_sha256": "08fe5079d1a2b85e888d3b22ccd59b41491406113b5abe3d84f3b056519c6506",
+    "rows": 45794,
+    "trainer_rows": 45794,
+    "steps_per_epoch": 5724,
+    "eval_interval_steps": 1145,
+    "duration_label_h": 52.7965,
+    "target_rows": 2269
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_val/manifest.csv",
+    "manifest_sha256": "7bae0fe11883db8a1056d24540c568f712816f539d00d2ba7ed52a66588e6263",
+    "rows": 4209,
+    "trainer_rows": 4209
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_test/manifest.csv",
+    "manifest_sha256": "8050c4ef67a9028c6e62005c2f76288af7c89a6ae725b263396417c1ffe2ebec",
+    "rows": 5117
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeju/jeju_B1p6h_GS-09",
+   "est_epoch_h": 2.086
+  },
+  {
+   "run_id": "jeju_B3p2h_GS-09",
+   "mode": "B",
+   "region": "jeju",
+   "region_ko": "제주",
+   "target_train_hours": 3.2,
+   "total_train_hours_nominal": 54.4,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "jeju_trainB_3p2h",
+    "manifest_sha256": "b9fa61e8ea256a4a6e36372f1828479a6bdbc10c7d6b5332350eb876d2e9deb4",
+    "rows": 47951,
+    "trainer_rows": 47951,
+    "steps_per_epoch": 5993,
+    "eval_interval_steps": 1199,
+    "duration_label_h": 54.3967,
+    "target_rows": 4426
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_val/manifest.csv",
+    "manifest_sha256": "7bae0fe11883db8a1056d24540c568f712816f539d00d2ba7ed52a66588e6263",
+    "rows": 4209,
+    "trainer_rows": 4209
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_test/manifest.csv",
+    "manifest_sha256": "8050c4ef67a9028c6e62005c2f76288af7c89a6ae725b263396417c1ffe2ebec",
+    "rows": 5117
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeju/jeju_B3p2h_GS-09",
+   "est_epoch_h": 2.168
+  },
+  {
+   "run_id": "jeju_B6p4h_GS-09",
+   "mode": "B",
+   "region": "jeju",
+   "region_ko": "제주",
+   "target_train_hours": 6.4,
+   "total_train_hours_nominal": 57.6,
+   "train": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_low_resource_b_v1/67de44242ce1568337be291196356d876b195ec978400c2f2a4806553972925f",
+    "dataset_root": "work/finetune/dialect5_low_resource_b_v1",
+    "train_set": "jeju_trainB_6p4h",
+    "manifest_sha256": "8c941fb627d7c0e0bbd3845e103f21a03fb5c0b49acde2b6e48f1c8c421fd170",
+    "rows": 52238,
+    "trainer_rows": 52238,
+    "steps_per_epoch": 6529,
+    "eval_interval_steps": 1306,
+    "duration_label_h": 57.5966,
+    "target_rows": 8713
+   },
+   "val": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_val/manifest.csv",
+    "manifest_sha256": "7bae0fe11883db8a1056d24540c568f712816f539d00d2ba7ed52a66588e6263",
+    "rows": 4209,
+    "trainer_rows": 4209
+   },
+   "test": {
+    "dataset_s3": "s3://accentury-track2-325771561913/datasets/dialect5_bench_v2/jeju/01bab6ab0e761418788678fc7227ebe40110a56a35854469f3f9d4d13aded9af",
+    "dataset_root": "work/finetune/dialect5_bench_v2/jeju",
+    "manifest": "sets/jeju_test/manifest.csv",
+    "manifest_sha256": "8050c4ef67a9028c6e62005c2f76288af7c89a6ae725b263396417c1ffe2ebec",
+    "rows": 5117
+   },
+   "results_s3": "s3://accentury-track2-325771561913/results_dialect5/jeju/jeju_B6p4h_GS-09",
+   "est_epoch_h": 2.333
+  }
+ ],
+ "checks": {
+  "s3_region_manifests_sha256_recomputed": true,
+  "s3_b_bundle_marker_and_manifests_present": true,
+  "nested_3p2h_manifest_sha256_recomputed": true,
+  "result_prefixes_empty": true,
+  "run_ids_and_result_paths_unique": true,
+  "val_test_from_original_region_bundle": true
+ },
+ "independent_review": "not_performed",
+ "training_executed": false
+}

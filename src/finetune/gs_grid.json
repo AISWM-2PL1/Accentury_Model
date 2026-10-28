@@ -1,0 +1,181 @@
+{
+ "문서": "docs/GYEONGSANG_LORA_SEARCH_PLAN_2026-09-27.md §3 — 학습률 3 × 유효 배치 2 × dropout 2 = 12조합. 물리 배치 8 고정, 유효 배치 = 8 × grad_accum. GS-13~20 은 확인용(2026-09-28, 경상 전용): 배치·학습률 짝(13~17) · rank(18·19) · label smoothing(20). 본선 그리드가 아니다. `추가` 는 조합별 덧붙이는 트레이너 인자.",
+ "공통": [
+  "--epochs",
+  "15",
+  "--lr-schedule",
+  "linear",
+  "--warmup-ratio",
+  "0.0833",
+  "--beta1",
+  "0.9",
+  "--beta2",
+  "0.99",
+  "--r",
+  "32",
+  "--alpha",
+  "8",
+  "--weight-decay",
+  "0.03",
+  "--label-smoothing",
+  "0.1",
+  "--batch",
+  "8",
+  "--eval-every-frac",
+  "0.2",
+  "--keep-last",
+  "3"
+ ],
+ "조합": {
+  "GS-01": {
+   "lr": "1e-5",
+   "grad_accum": 1,
+   "dropout": "0.05"
+  },
+  "GS-02": {
+   "lr": "1e-5",
+   "grad_accum": 1,
+   "dropout": "0.10"
+  },
+  "GS-03": {
+   "lr": "1e-5",
+   "grad_accum": 4,
+   "dropout": "0.05"
+  },
+  "GS-04": {
+   "lr": "1e-5",
+   "grad_accum": 4,
+   "dropout": "0.10"
+  },
+  "GS-05": {
+   "lr": "5e-5",
+   "grad_accum": 1,
+   "dropout": "0.05"
+  },
+  "GS-06": {
+   "lr": "5e-5",
+   "grad_accum": 1,
+   "dropout": "0.10"
+  },
+  "GS-07": {
+   "lr": "5e-5",
+   "grad_accum": 4,
+   "dropout": "0.05"
+  },
+  "GS-08": {
+   "lr": "5e-5",
+   "grad_accum": 4,
+   "dropout": "0.10"
+  },
+  "GS-09": {
+   "lr": "1e-4",
+   "grad_accum": 1,
+   "dropout": "0.05"
+  },
+  "GS-10": {
+   "lr": "1e-4",
+   "grad_accum": 1,
+   "dropout": "0.10"
+  },
+  "GS-11": {
+   "lr": "1e-4",
+   "grad_accum": 4,
+   "dropout": "0.05"
+  },
+  "GS-12": {
+   "lr": "1e-4",
+   "grad_accum": 4,
+   "dropout": "0.10"
+  },
+  "GS-13": {
+   "lr": "1e-4",
+   "grad_accum": 8,
+   "dropout": "0.05",
+   "추가": [],
+   "질문": "배치 64 · lr 그대로"
+  },
+  "GS-14": {
+   "lr": "2e-4",
+   "grad_accum": 8,
+   "dropout": "0.05",
+   "추가": [],
+   "질문": "배치 64 · lr 2배 (선형 비례)"
+  },
+  "GS-15": {
+   "lr": "2e-4",
+   "grad_accum": 16,
+   "dropout": "0.05",
+   "추가": [],
+   "질문": "배치 128 · lr 2배"
+  },
+  "GS-16": {
+   "lr": "4e-4",
+   "grad_accum": 16,
+   "dropout": "0.05",
+   "추가": [],
+   "질문": "배치 128 · lr 4배 (선형 비례)"
+  },
+  "GS-17": {
+   "lr": "2e-4",
+   "grad_accum": 4,
+   "dropout": "0.05",
+   "추가": [],
+   "질문": "배치 32 · lr 2e-4 (1e-4 포화 여부)"
+  },
+  "GS-18": {
+   "lr": "5e-5",
+   "grad_accum": 4,
+   "dropout": "0.10",
+   "추가": [
+    "--r",
+    "16",
+    "--alpha",
+    "4"
+   ],
+   "질문": "GS-08 + rank 16 (α/r 0.25 유지)"
+  },
+  "GS-19": {
+   "lr": "5e-5",
+   "grad_accum": 4,
+   "dropout": "0.10",
+   "추가": [
+    "--r",
+    "64",
+    "--alpha",
+    "16"
+   ],
+   "질문": "GS-08 + rank 64 (α/r 0.25 유지)"
+  },
+  "GS-20": {
+   "lr": "5e-5",
+   "grad_accum": 4,
+   "dropout": "0.10",
+   "추가": [
+    "--label-smoothing",
+    "0"
+   ],
+   "질문": "GS-08 + label smoothing 0"
+  },
+  "GS-21": {
+   "lr": "1e-4",
+   "grad_accum": 4,
+   "dropout": "0.10",
+   "추가": [],
+   "질문": "GS-12 복제 — 충청 본학습을 촘촘한 평가 간격으로 처음부터(direct) 돌리기 위한 새 RUN_ID (2026-10-01)"
+  },
+  "GS-22": {
+   "lr": "5e-5",
+   "grad_accum": 1,
+   "dropout": "0.10",
+   "추가": [],
+   "질문": "GS-06 복제 — 충청 본학습을 촘촘한 평가 간격으로 처음부터(direct) 돌리기 위한 새 RUN_ID (2026-10-01)"
+  },
+  "GS-23": {
+   "lr": "5e-5",
+   "grad_accum": 4,
+   "dropout": "0.10",
+   "추가": [],
+   "질문": "GS-08 복제 — 충청 본학습을 촘촘한 평가 간격으로 처음부터(direct) 돌리기 위한 새 RUN_ID (2026-10-01)"
+  }
+ }
+}
