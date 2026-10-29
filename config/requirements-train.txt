@@ -1,0 +1,11 @@
+# 학습 보고에서 확인: transformers 4.57.6 / peft 0.20.0.
+# PyTorch는 별도 환경에서 준비: 기록된 CUDA 빌드는 torch 2.9.1+cu130.
+# 이 파일로 기존 CUDA torch를 교체하지 않는다. docs/TRAINING.md 참고.
+transformers==4.57.6
+peft==0.20.0
+
+# 실행 의존성. 당시 EC2의 정확한 버전은 미확인으로 핀하지 않았다.
+# 따라서 이 목록은 완전한 환경 lockfile이 아니다.
+numpy
+soundfile
+tensorboard
